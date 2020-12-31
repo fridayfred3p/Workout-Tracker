@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { db } = require("../models/exercise.js");
 const exercise = require("../models/exercise.js");
 const workout = require("../models/workout.js");
 
@@ -33,6 +34,16 @@ router.get("/api/workout", (req, res) => {
     .catch(err => {
       res.status(400).json(err);
     });
+});
+
+router.get("/api/populated", (req, res) => {
+  workout.find({})
+  .populate('exercises')
+  .then(dbWorkout => {
+    res.json(dbWorkout);
+  }).catch(err => {
+    res.json(err);
+  });
 });
 
 module.exports = router;

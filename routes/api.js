@@ -24,7 +24,14 @@ router.post("/api/workout", (req, res) => {
     });
 });
 
-
+router.get("/exercise", (req, res) => {
+  exercise.find({})
+  .then(dbWorkout => {
+    res.json(dbWorkout);
+  }).catch(err =>{
+    res.status(400).json(err);
+  });
+});
 router.get("/api/workout", (req, res) => {
   workout.find({})
     .sort({ date: -1 })

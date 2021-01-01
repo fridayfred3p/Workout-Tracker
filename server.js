@@ -28,9 +28,10 @@ db.workout.create({name: "new workout"})
     console.log(message);
   });
 
-  
+
 // routes
-app.use(require("./routes/api.js"));
+app.use(require("./routes/api"));
+app.use(require("./routes/returnStats"))
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
